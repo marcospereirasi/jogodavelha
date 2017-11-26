@@ -1,0 +1,97 @@
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+#include<locale.h>
+
+int main(void)
+{
+    char vetor[3][3];
+    char O='O', X='X';
+    int l=0,j,i;
+
+
+    for(i=0;i<3;i++)
+        for(j=0;j<3;j++)
+            vetor[i][j]=' ';
+
+    while(l<=9)
+        {
+        printf("  JOGO DA VELHA \n");
+        for(i=0;i<3;i++)
+        {
+            printf("\t\t     %c \| %c \| %c\n",vetor[i][0],vetor[i][1],vetor[i][2]);
+            if(i<2)
+            {
+
+                printf("\t\t   '----\----\----'\n");
+            }
+        }
+
+        printf("\n\n\n\n\n\n\n\n\n\n\n\nINSIRA AS COORDENADAS \n");
+        if(l%2)printf("PLAYER 2\nLINHA: ");
+        else printf("PLAYER 1\nLINHA: ");
+
+        scanf("%d",&i);
+        printf("COLUNA: ");
+        scanf("%d",&j);
+
+
+
+            if(vetor[i-1][j-1]==' ')
+            {
+            if(l%2)vetor[i-1][j-1]=X;
+            else vetor[i-1][j-1]=O;
+            l++;
+            }
+
+            if (i < 1 || j < 1 || i > 3 || j > 3){
+            i = 0;
+            j = 0;
+            printf("Jogada inválida, favor inserir valores entre 1 e 3!");
+        }
+
+
+
+
+//HORIZONTAL
+        if((vetor[0][0]==O && vetor[0][1]==O && vetor[0][2]==O)||
+           (vetor[1][0]==O && vetor[1][1]==O && vetor[1][2]==O)||
+           (vetor[2][0]==O && vetor[2][1]==O && vetor[2][2]==O)||
+//VERTICAL
+           (vetor[0][0]==O && vetor[1][0]==O && vetor[2][0]==O)||
+           (vetor[0][1]==O && vetor[1][1]==O && vetor[2][1]==O)||
+           (vetor[0][2]==O && vetor[1][2]==O && vetor[2][2]==O)||
+//DIAGONAL
+           (vetor[0][0]==O && vetor[1][1]==O && vetor[2][2]==O)||
+           (vetor[0][2]==O && vetor[1][1]==O && vetor[2][0]==O))
+        {
+            printf("\n\a\t\tJOGADOR 1, VOCE VENCEU!!!");
+            break;
+        }
+//HORIZONTAL
+        if((vetor[0][0]==X && vetor[0][1]==X && vetor[0][2]==X)||
+           (vetor[1][0]==X && vetor[1][1]==X && vetor[1][2]==X)||
+           (vetor[2][0]==X && vetor[2][1]==X && vetor[2][2]==X)||
+//VERTICAL
+           (vetor[0][0]==X && vetor[1][0]==X && vetor[2][0]==X)||
+           (vetor[0][1]==X && vetor[1][1]==X && vetor[2][1]==X)||
+           (vetor[0][2]==X && vetor[1][2]==X && vetor[2][2]==X)||
+//DIAGONAL
+           (vetor[0][0]==X && vetor[1][1]==X && vetor[2][2]==X)||
+           (vetor[0][2]==X && vetor[1][1]==X && vetor[2][0]==X))
+        {
+            printf("\n\n\n\n\a\t\tJOGADOR 2, VOCE VENCEU!!!");
+            break;
+        }
+
+        if(l==9)
+        {
+            printf("PARTIDA EMPATADA");
+            break;
+        }
+
+    }
+    getchar();
+    return(0);
+}
+
